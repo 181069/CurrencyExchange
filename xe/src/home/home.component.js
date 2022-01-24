@@ -1,9 +1,10 @@
+import Header from "../components/firstPart/header/header.component";
 import Main from "../components/firstPart/main/main.component";
 
 const Home =() => {
     return (
         <div>
-            hi from home
+            <Header />
             <Main />
         </div>
     )

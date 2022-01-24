@@ -1,14 +1,13 @@
 import Exchange from "../exchange/exchange.component";
-import Header from "../header/header.component";
-
+import Title from "../title/title.component";
+import classes from './main.module.css';
 
 const Main =() => {
     return (
-        <div>
-            hi from main
-            <Header />
-            <Exchange />
-        </div>
-    )
+      <div className={classes.wrapper}>
+          <Title />
+          <Exchange />
+      </div>
+    );
 }
 export default Main;
