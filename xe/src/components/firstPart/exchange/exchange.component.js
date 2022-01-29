@@ -1,6 +1,7 @@
+import classes from './exchange.module.css'
 const Exchange =() => {
     return (
-        <div>
+        <div className={classes.wrapper}>
             
         </div>
     )
