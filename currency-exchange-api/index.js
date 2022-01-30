@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const config = require("dotenv").config();
+const port = process.env.PORT;
 var app = express();
 // app.use(cors());
-const port = 3001;
 app.get('*', (req, res) => {
     res.status(404).send('404', { url: req.originalUrl });
 })
