@@ -5,18 +5,18 @@ class Form {
     #receiver;
     #date;
     #ammount; 
-    #currency;
-    #payment;
+    #currencyId;
+    #paymentId;
 
 
     async addForm(form) {
       console.log("momde",form);
-        const sqlQuery = `INSERT INTO form (id, sender, receiver, ammount,currency, date, payment) VALUES (NULL,'${form.sender
-          }', '${form.receiver}', '${form.ammount}', '${form.currency}', '${form.date}', '${form.payment}')`;
+        const sqlQuery = `INSERT INTO form (id, sender, receiver, ammount,currencyId, date, paymentId) VALUES (NULL,'${form.sender
+          }', '${form.receiver}', '${form.ammount}', '${form.currencyId}', '${form.date}', '${form.paymentId}')`;
     
         return await connection.query(sqlQuery)
           .then(([rows, fields]) => {
-            return 'successfully added a new form ';
+            return 'successfully added a new user ';
           })
           .catch((err) => err);
       }

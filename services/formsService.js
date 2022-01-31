@@ -14,11 +14,11 @@ class FormsService {
       return "receicer should be greater than 0";
     } else if (form.ammount < 0) {
       return "ammount should be greater than 0";
-    } else if (form.currency.length <= 0) {
+    } else if (form.currencyID <= 0) {
       return "currency should be greater than 0";
     }else if (form.date.length <= 0) {
       return "currency should be greater than 0";
-    }else if (form.payment.length <= 0) {
+    }else if (form.paymentID <= 0) {
       return "payment should be greater than 0";
     }
     else {
