@@ -4,6 +4,8 @@ import "antd/dist/antd.css";
 import classes from "./live-exchange.module.css";
 import Counter from "../counter/counter.component";
 import Chart from "../chart/chart.component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 const LiveExchange = () => {
   const [data, setData] = useState([]);
@@ -40,26 +42,27 @@ const LiveExchange = () => {
         ))}
       </p>
       <h2 className={classes.title}>Live Exchange Rates</h2>
-      <table className={classes.liveTable}>
-        <thead>
-          <tr>
-            <th className={classes.tableHeader}>
-              Inverse <Switch onChange={() => setInverse(!inverse)} />
-            </th>
-            <th className={classes.tableHeader}>Amount</th>
-            <th className={classes.tableHeader}>Change(24h)</th>
-            <th className={classes.tableHeader}>Chart(24h)</th>
-            <th className={classes.tableHeader}>
-              <Button onClick={() => setEditClicked(!editClicked)}>
-                {editClicked ? "Done" : "Edit"}{" "}
-              </Button>
-            </th>
-          </tr>
-        </thead>
+      <div className={classes.liveTable}>
+        <div className={classes.tableHeader}>
+          <div className={classes.tableHeaderElem}>
+            Inverse <Switch onChange={() => setInverse(!inverse)} />
+          </div>
+          <div className={classes.tableHeaderElem}>Amount</div>
+          <div className={classes.tableHeaderElem}>Change(24h)</div>
+          <div className={classes.tableHeaderElem}>Chart(24h)</div>
+          <div className={classes.tableHeaderElem}>
+            <Button
+              className={classes.editBtn}
+              onClick={() => setEditClicked(!editClicked)}
+            >
+              {editClicked ? "Done" : "Edit"}{" "}
+            </Button>
+          </div>
+        </div>
 
-        <tbody>
-          <tr>
-            <td>
+        <div>
+          <div className={classes.mainRow}>
+            <div>
               {" "}
               <img
                 src={`https://flagcdn.com/16x12/${defaultData[0]
@@ -68,12 +71,14 @@ const LiveExchange = () => {
                 alt={defaultData[0]}
               />{" "}
               {defaultData[0]}
-            </td>
-            {inverse ? <td>Inverse</td> : <td>1</td>}
-          </tr>
+            </div>
+            <div className={classes.mainRowAmount}>
+              {inverse ? <div>Inverse</div> : <div>1</div>}
+            </div>
+          </div>
           {Object.keys(data).map((val, key) => (
-            <tr key={key} className="currency-row">
-              <td>
+            <div key={key} className={classes.currencyRow}>
+              <div>
                 <button
                   onClick={() => {
                     setDefaultData([data[val].code, ...defaultData]);
@@ -87,34 +92,40 @@ const LiveExchange = () => {
                   />
                   {data[val].code}{" "}
                 </button>
-              </td>
+              </div>
               {inverse ? (
-                <td>{data[val].inverseRate.toFixed(4)}</td>
+                <div>{data[val].inverseRate.toFixed(4)}</div>
               ) : (
-                <td>{data[val].rate.toFixed(4)}</td>
+                <div>{data[val].rate.toFixed(4)}</div>
               )}
-              <td>
+              <div>
                 {(
                   (data[val].rate - data[val].inverseRate) /
                   data[val].rate
                 ).toFixed(3)}
                 %
-              </td>
-              <td>
+              </div>
+              <div>
                 <Chart />
-              </td>
-              <td>
-                <div className={classes.Btn}>
-                  <button>Send</button>
+              </div>
+              <div>
+                <div className={classes.btnDiv}>
+                  <button className={classes.sendBtn}>
+                    <FontAwesomeIcon
+                      icon={faPaperPlane}
+                      className={classes.sendIcon}
+                    />
+                    Send
+                  </button>
                   {editClicked && (
                     <button className={classes.deleteBtn}>-</button>
                   )}
                 </div>
-              </td>
-            </tr>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
       <div className={classes.currencyDiv}>
         <div>
           <button>Add Currency</button>

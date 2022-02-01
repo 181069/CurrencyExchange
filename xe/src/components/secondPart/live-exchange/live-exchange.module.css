@@ -19,16 +19,80 @@
 }
 
 .tableHeader {
+  display: flex;
+}
+
+.tableHeaderElem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgb(20, 30, 55);
+  flex: 0 10 30%;
   font-size: 1.6rem;
   font-weight: 600;
   padding: 16px 8px;
 }
 
-.Btn {
+.mainRow {
+  background-color: #0a146e;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  color: white;
+}
+
+.mainRowAmount {
+  margin-left: 18vw;
+}
+
+.currencyRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.editBtn {
+  border-radius: 5px;
+  color: #006fe8;
+  border: 2px solid #006fe8;
+  font-weight: bold;
+}
+
+.editBtn:hover {
+  box-shadow: rgb(20 30 55 / 70%) 0px 2px 4px 0px;
+  background: rgba(0, 111, 232, 0.15);
+  color: #006fe8;
+  border-color: #006fe8;
+  cursor: pointer;
+}
+
+.btnDiv {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sendBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #006fe8;
+  border: none;
+}
+
+.sendBtn:hover {
+  cursor: pointer;
+  box-shadow: rgb(20 30 55 / 70%) 0px 2px 4px 0px;
+  background: rgb(38, 151, 255);
+  border-color: rgb(38, 151, 255);
+}
+
+.sendIcon {
+  margin-right: 5px;
 }
 
 .deleteBtn {
@@ -42,6 +106,16 @@
   background-color: red;
   color: white;
   margin-left: 4px;
+  font-weight: bolder;
+  padding: 0px;
+  margin-left: 16px;
+}
+
+.deleteBtn:hover {
+  cursor: pointer;
+  box-shadow: rgb(20 30 55 / 70%) 0px 2px 4px 0px;
+  background: rgb(217, 38, 71);
+  border-color: rgb(217, 38, 71);
 }
 
 .currencyDiv {
