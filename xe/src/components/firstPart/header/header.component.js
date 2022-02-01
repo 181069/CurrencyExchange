@@ -4,7 +4,7 @@ import classes from './header.module.css'
 const Header =() => {
     return (
       <div className={classes.wrapper}>
-        <div className={classes.nav}>
+        
           <div className={classes.image}>
             <img src={logo} alt="an error" className={classes.img} />
           </div>
@@ -19,7 +19,7 @@ const Header =() => {
             <button className={classes.sign}>Sign in</button>
             <button className={classes.get}>Get the App</button>
           </div>
-        </div>
+        
       </div>
     );
 }
