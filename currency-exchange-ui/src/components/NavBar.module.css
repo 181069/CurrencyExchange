@@ -1,0 +1,15 @@
+.NavBar {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ribbon {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ribbon > div {
+  padding: 0px 10px 0px 10px;
+}
