@@ -45,7 +45,11 @@ const LiveExchange = () => {
       <div className={classes.liveTable}>
         <div className={classes.tableHeader}>
           <div className={classes.tableHeaderElem}>
-            Inverse <Switch onChange={() => setInverse(!inverse)} />
+            Inverse{" "}
+            <Switch
+              className={classes.inverseBtn}
+              onChange={() => setInverse(!inverse)}
+            />
           </div>
           <div className={classes.tableHeaderElem}>Amount</div>
           <div className={classes.tableHeaderElem}>Change(24h)</div>
@@ -65,7 +69,7 @@ const LiveExchange = () => {
             <div>
               {" "}
               <img
-                src={`https://flagcdn.com/16x12/${defaultData[0]
+                src={`https://flagcdn.com/32x24/${defaultData[0]
                   .substring(0, 2)
                   .toLowerCase()}.png`}
                 alt={defaultData[0]}
@@ -80,17 +84,21 @@ const LiveExchange = () => {
             <div key={key} className={classes.currencyRow}>
               <div>
                 <button
+                  className={classes.currencyBtn}
                   onClick={() => {
                     setDefaultData([data[val].code, ...defaultData]);
                   }}
                 >
                   <img
-                    src={`https://flagcdn.com/16x12/${data[val].code
+                    src={`https://flagcdn.com/32x24/${data[val].code
                       .substring(0, 2)
                       .toLowerCase()}.png`}
                     alt={data[val].code}
                   />
-                  {data[val].code}{" "}
+                  <span className={classes.currencyBtnTxt}>
+                    {" "}
+                    {data[val].code}{" "}
+                  </span>
                 </button>
               </div>
               {inverse ? (
@@ -125,14 +133,19 @@ const LiveExchange = () => {
             </div>
           ))}
         </div>
-      </div>
-      <div className={classes.currencyDiv}>
-        <div>
-          <button>Add Currency</button>
-        </div>
-        <div className={classes.counterDiv}>
-          <Counter />
-          <p className={classes.counterP}>Last updated {updateDate}</p>
+        <div className={classes.currencyDiv}>
+          <div>
+            <button className={classes.addBtn}>
+              <span className={classes.addCircle}>
+                <span className={classes.addIcon}>+</span>
+              </span>
+              Add Currency
+            </button>
+          </div>
+          <div className={classes.counterDiv}>
+            <Counter />
+            <p className={classes.counterP}>Last updated {updateDate}</p>
+          </div>
         </div>
       </div>
     </div>
