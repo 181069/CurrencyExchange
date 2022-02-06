@@ -1,0 +1,38 @@
+.addBtn {
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #006fe8;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled,
+button:disabled:hover {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+}
+
+.addCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: #006fe8;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+}
+
+.addIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+}

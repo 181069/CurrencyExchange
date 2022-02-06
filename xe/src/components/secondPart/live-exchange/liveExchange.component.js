@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Button, Collapse } from "antd";
+import { Switch, Button } from "antd";
 import "antd/dist/antd.css";
 import classes from "./live-exchange.module.css";
 import Counter from "../counter/counter.component";
-import Chart from "../chart/chart.component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import ExchangeItem from "../exchange-item/exchangeItem.component";
+import AddCurrency from "../add-currency/addCurrency.component";
 
 const LiveExchange = () => {
   const [data, setData] = useState([]);
@@ -13,7 +12,6 @@ const LiveExchange = () => {
   const [editClicked, setEditClicked] = useState(false);
   const [updateDate, setUpdateDate] = useState(new Date().toUTCString());
   const [defaultData, setDefaultData] = useState(["USD", "CAD", "GBP", "EUR"]);
-  const { Panel } = Collapse;
 
   const getCurrencyData = (c) => {
     fetch(`http://www.floatrates.com/daily/${c[0]}.json`)
@@ -25,8 +23,8 @@ const LiveExchange = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleDelete = (key) => {
-    setDefaultData(defaultData.filter((item) => item.key !== key));
+  const handleDelete = (index) => {
+    setDefaultData(defaultData.filter((item) => item.index !== index));
   };
 
   useEffect(() => {
@@ -43,14 +41,12 @@ const LiveExchange = () => {
       <div className={classes.liveTable}>
         <div className={classes.tableHeader}>
           <div className={classes.tableHeaderElem}>
-            Inverse{" "}
+            <span>Inverse</span>
             {editClicked ? (
               <Switch disabled />
             ) : (
               <Switch
-                className={
-                  editClicked ? classes.disableBtn : classes.inverseBtn
-                }
+                className={classes.inverseBtn}
                 onChange={() => setInverse(!inverse)}
               />
             )}
@@ -88,104 +84,21 @@ const LiveExchange = () => {
             .filter((item1) =>
               defaultData.some((item2) => item1 === item2.toLowerCase())
             )
-            .map((val, key) => (
-              // I will move it to exchange-item component
-              <div key={key} className={classes.currencyRow}>
-                <div>
-                  <button
-                    className={classes.currencyBtn}
-                    onClick={() => {
-                      setDefaultData([data[val].code, ...defaultData]);
-                    }}
-                  >
-                    <img
-                      src={`https://flagcdn.com/32x24/${data[val].code
-                        .substring(0, 2)
-                        .toLowerCase()}.png`}
-                      alt={data[val].code}
-                    />
-                    <span className={classes.currencyBtnTxt}>
-                      {" "}
-                      {data[val].code}{" "}
-                    </span>
-                  </button>
-                </div>
-                {inverse ? (
-                  <div>{data[val].inverseRate.toFixed(4)}</div>
-                ) : (
-                  <div>{data[val].rate.toFixed(4)}</div>
-                )}
-                <div>
-                  {(
-                    (data[val].rate - data[val].inverseRate) /
-                    data[val].rate
-                  ).toFixed(3)}
-                  %
-                </div>
-                <div>
-                  <Chart />
-                </div>
-                <div>
-                  <div className={classes.btnDiv}>
-                    {editClicked ? (
-                      <button disabled className={classes.sendBtn}>
-                        <FontAwesomeIcon
-                          icon={faPaperPlane}
-                          className={classes.sendIcon}
-                        />
-                        Send
-                      </button>
-                    ) : (
-                      <button className={classes.sendBtn}>
-                        <FontAwesomeIcon
-                          icon={faPaperPlane}
-                          className={classes.sendIcon}
-                        />
-                        Send
-                      </button>
-                    )}
-                    {editClicked && (
-                      <button
-                        className={classes.deleteBtn}
-                        onClick={(e) => console.log(e)}
-                      >
-                        -
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
+            .map((item, index) => (
+              <ExchangeItem
+                key={index}
+                item={item}
+                data={data}
+                defaultData={defaultData}
+                inverse={inverse}
+                editClicked={editClicked}
+                setDefaultData={setDefaultData}
+              />
             ))}
         </div>
         {/* Currency Div which contain add currency btn and the counter */}
         <div className={classes.currencyDiv}>
-          <Collapse defaultActiveKey={["1"]}>
-            <Panel
-              header={
-                <div>
-                  {editClicked ? (
-                    <button disabled className={classes.addBtn}>
-                      <span className={classes.addCircle}>
-                        <span className={classes.addIcon}>+</span>
-                      </span>
-                      Add Currency
-                    </button>
-                  ) : (
-                    <button className={classes.addBtn}>
-                      <span className={classes.addCircle}>
-                        <span className={classes.addIcon}>+</span>
-                      </span>
-                      Add Currency
-                    </button>
-                  )}
-                </div>
-              }
-              showArrow={false}
-            >
-              <p>sdgfdsfg</p>
-            </Panel>
-          </Collapse>
-
+          <AddCurrency editClicked={editClicked} />
           <div className={classes.counterDiv}>
             <Counter />
             <p className={classes.counterP}>Last updated {updateDate}</p>
