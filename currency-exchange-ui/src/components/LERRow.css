@@ -1,0 +1,4 @@
+.LERRow, .LERRow td {
+  transition: transform 1s ease 0s, left 0.3s ease 0s;
+  border-bottom: 1 px solid green;
+}
