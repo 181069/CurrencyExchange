@@ -10,6 +10,7 @@
   justify-content: space-between;
 }
 
-.ribbon > div {
+.ribbon > DropDown {
   padding: 0px 10px 0px 10px;
 }
+
