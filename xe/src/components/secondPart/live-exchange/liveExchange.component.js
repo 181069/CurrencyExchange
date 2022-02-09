@@ -9,12 +9,17 @@ import AddCurrency from "../add-currency/addCurrency.component";
 const LiveExchange = () => {
   const [data, setData] = useState([]);
   const [inverse, setInverse] = useState(false);
-  const [editClicked, setEditClicked] = useState(false);
+  const [editClick, setEditClick] = useState(false);
   const [updateDate, setUpdateDate] = useState(new Date().toUTCString());
-  const [defaultData, setDefaultData] = useState(["USD", "CAD", "GBP", "EUR"]);
+  const [defaultData, setDefaultData] = useState([
+    { id: 1, numericCode: "840", code: "usd" },
+    { id: 2, numericCode: "124", code: "cad" },
+    { id: 3, numericCode: "826", code: "gbp" },
+    { id: 4, numericCode: "978", code: "eur" },
+  ]);
 
   const getCurrencyData = (c) => {
-    fetch(`http://www.floatrates.com/daily/${c[0]}.json`)
+    fetch(`http://www.floatrates.com/daily/${c[0].code}.json`)
       .then(async (result) => {
         const fResult = await result.json();
         console.log(fResult);
@@ -23,8 +28,10 @@ const LiveExchange = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleDelete = (index) => {
-    setDefaultData(defaultData.filter((item) => item.index !== index));
+  const handleDelete = (numericCode) => {
+    setDefaultData(
+      defaultData.filter((item) => item.numericCode !== numericCode)
+    );
   };
 
   useEffect(() => {
@@ -42,7 +49,7 @@ const LiveExchange = () => {
         <div className={classes.tableHeader}>
           <div className={classes.tableHeaderElem}>
             <span>Inverse</span>
-            {editClicked ? (
+            {editClick ? (
               <Switch disabled />
             ) : (
               <Switch
@@ -57,9 +64,9 @@ const LiveExchange = () => {
           <div className={classes.tableHeaderElem}>
             <Button
               className={classes.editBtn}
-              onClick={() => setEditClicked(!editClicked)}
+              onClick={() => setEditClick(!editClick)}
             >
-              {editClicked ? "Done" : "Edit"}{" "}
+              {editClick ? "Done" : "Edit"}{" "}
             </Button>
           </div>
         </div>
@@ -69,12 +76,12 @@ const LiveExchange = () => {
             <div>
               {" "}
               <img
-                src={`https://flagcdn.com/32x24/${defaultData[0]
+                src={`https://flagcdn.com/32x24/${defaultData[0].code
                   .substring(0, 2)
                   .toLowerCase()}.png`}
-                alt={defaultData[0]}
+                alt={defaultData[0].code}
               />{" "}
-              {defaultData[0]}
+              {defaultData[0].code.toUpperCase()}
             </div>
             <div className={classes.mainRowAmount}>
               {inverse ? <div>Inverse</div> : <div>1</div>}
@@ -82,23 +89,30 @@ const LiveExchange = () => {
           </div>
           {Object.keys(data)
             .filter((item1) =>
-              defaultData.some((item2) => item1 === item2.toLowerCase())
+              defaultData.some((item2) => item1 === item2.code)
             )
             .map((item, index) => (
               <ExchangeItem
                 key={index}
+                numericCode={data[item].numericCode}
                 item={item}
                 data={data}
                 defaultData={defaultData}
                 inverse={inverse}
-                editClicked={editClicked}
+                editClick={editClick}
                 setDefaultData={setDefaultData}
+                handleDelete={handleDelete}
               />
             ))}
         </div>
         {/* Currency Div which contain add currency btn and the counter */}
         <div className={classes.currencyDiv}>
-          <AddCurrency editClicked={editClicked} />
+          <AddCurrency
+            editClick={editClick}
+            data={data}
+            defaultData={defaultData}
+            setDefaultData={setDefaultData}
+          />
           <div className={classes.counterDiv}>
             <Counter />
             <p className={classes.counterP}>Last updated {updateDate}</p>

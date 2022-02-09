@@ -5,6 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 const ExchangeItem = (props) => {
+  const handleDelete = () => {
+    console.log("hello " + props.numericCode);
+    if (props.handleDelete) props.handleDelete(props.numericCode);
+  };
+
   return (
     <div className={classes.exchangeItem}>
       <div>
@@ -12,7 +17,11 @@ const ExchangeItem = (props) => {
           className={classes.currencyBtn}
           onClick={() => {
             props.setDefaultData([
-              props.data[props.item].code,
+              {
+                id: new Date().getTime(),
+                numericCode: `${props.data[props.item].numericCode}`,
+                code: props.data[props.item].code,
+              },
               ...props.defaultData,
             ]);
           }}
@@ -46,7 +55,7 @@ const ExchangeItem = (props) => {
       </div>
       <div>
         <div className={classes.btnDiv}>
-          {props.editClicked ? (
+          {props.editClick ? (
             <button disabled className={classes.sendBtn}>
               <FontAwesomeIcon
                 icon={faPaperPlane}
@@ -63,11 +72,8 @@ const ExchangeItem = (props) => {
               Send
             </button>
           )}
-          {props.editClicked && (
-            <button
-              className={classes.deleteBtn}
-              onClick={(e) => console.log(e)}
-            >
+          {props.editClick && (
+            <button className={classes.deleteBtn} onClick={handleDelete}>
               -
             </button>
           )}
