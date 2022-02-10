@@ -3,7 +3,6 @@ import classes from "./add-currency.module.css";
 
 const AddCurrency = (props) => {
   const [addClick, setAddClick] = useState(false);
-
   const [dataItems, setDataItems] = useState();
 
   const handleClick = () => {

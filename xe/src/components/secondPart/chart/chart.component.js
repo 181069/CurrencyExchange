@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./chart.module.css";
 import { LineChart, Line } from "recharts";
 
-// uv vertical, 
 const data = [
   { name: "Hour 1", uv: 55, pv: 2000, amt: 2000 },
   { name: "Hour 2", uv: 85, pv: 2000, amt: 2000 },
