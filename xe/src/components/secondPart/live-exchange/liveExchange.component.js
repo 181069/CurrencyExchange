@@ -19,13 +19,12 @@ const LiveExchange = () => {
   ]);
 
   const getCurrencyData = (c) => {
-    fetch(`http://www.floatrates.com/daily/${c[0].code}.json`)
-      .then(async (result) => {
+    fetch(`http://www.floatrates.com/daily/${c[0].code}.json`).then(
+      async (result) => {
         const fResult = await result.json();
-        console.log(fResult);
         setData(fResult);
-      })
-      .catch((error) => console.log(error));
+      }
+    );
   };
 
   const handleDelete = (numericCode) => {

@@ -6,7 +6,6 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 const ExchangeItem = (props) => {
   const handleDelete = () => {
-    console.log("hello " + props.numericCode);
     if (props.handleDelete) props.handleDelete(props.numericCode);
   };
 

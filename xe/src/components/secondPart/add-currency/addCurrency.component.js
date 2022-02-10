@@ -1,53 +1,44 @@
 import React, { useState } from "react";
-import { Collapse } from "antd";
 import classes from "./add-currency.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddCurrency = (props) => {
-  const { Panel } = Collapse;
   const [addClick, setAddClick] = useState(false);
+
+  const [dataItems, setDataItems] = useState();
+
+  const handleClick = () => {
+    setAddClick(!addClick);
+    setDataItems(
+      Object.keys(props.data).filter(
+        (item1) => !props.defaultData.some((item2) => item1 === item2.code)
+      )
+    );
+  };
+
+  const handleChange = (event) => {
+    const searchTerm = event.target.value;
+    setDataItems(
+      Object.keys(props.data)
+        .filter(
+          (item1) => !props.defaultData.some((item2) => item1 === item2.code)
+        )
+        .filter((item) =>
+          props.data[item].name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+  };
+
   return (
     <>
-      {/* <Collapse>
-        <Panel
-          header={
-            <div>
-              {props.editClick ? (
-                <button disabled className={classes.addBtn}>
-                  <span className={classes.addCircle}>
-                    <span className={classes.addIcon}>+</span>
-                  </span>
-                  Add Currency
-                </button>
-              ) : (
-                <button className={classes.addBtn}>
-                  <span className={classes.addCircle}>
-                    <span className={classes.addIcon}>+</span>
-                  </span>
-                  Add Currency
-                </button>
-              )}
-            </div>
-          }
-          showArrow={false}
-        >
-          {Object.keys(props.data)
-            .filter((item1) =>
-              props.defaultData.some((item2) => item1 !== item2.code)
-            )
-            .map((item) => (
-              <p>{props.data[item].numericCode}</p>
-            ))}
-
-          <p>Item1</p>
-        </Panel>
-      </Collapse> */}
-
       <div className={classes.wrapper}>
         {addClick ? (
           <div className={classes.content}>
             <div className={classes.search}>
-              <input type="text" placeholder="Type to Search" />
+              <input
+                type="text"
+                placeholder="Type to Search"
+                onChange={handleChange}
+              />
               <button
                 className={classes.close}
                 onClick={() => setAddClick(!addClick)}
@@ -56,43 +47,34 @@ const AddCurrency = (props) => {
               </button>
             </div>
             <div className={classes.options}>
-              {Object.keys(props.data)
-                .filter(
-                  (item1) =>
-                    !(
-                      props.defaultData.some((item2) => item1 === item2.code) // we have a problem here
-                    )
-                )
-                .map((item, index) => (
-                  <button
-                    key={index}
-                    className={classes.optionBtn}
-                    onClick={() => {
-                      console.log("hhhhh");
-                      props.setDefaultData([
-                        ...props.defaultData,
-                        {
-                          id: new Date().getTime(),
-                          numericCode: `${props.data[item].numericCode}`,
-                          code: `${props.data[item].code.toLowerCase()}`,
-                        },
-                      ]);
-                    }}
-                  >
-                    {" "}
-                    <img
-                      src={`https://flagcdn.com/32x24/${props.data[item].code
-                        .substring(0, 2)
-                        .toLowerCase()}.png`}
-                      alt={props.data[item].code}
-                    />{" "}
-                    <span className={classes.code}>
-                      {props.data[item].code}
-                    </span>
-                    <span className={classes.hyphen}> - </span>
-                    {props.data[item].name}
-                  </button>
-                ))}
+              {dataItems.map((item, index) => (
+                <button
+                  key={index}
+                  className={classes.optionBtn}
+                  onClick={() => {
+                    props.setDefaultData([
+                      ...props.defaultData,
+                      {
+                        id: new Date().getTime(),
+                        numericCode: `${props.data[item].numericCode}`,
+                        code: `${props.data[item].code.toLowerCase()}`,
+                      },
+                    ]);
+                    setAddClick(false);
+                  }}
+                >
+                  {" "}
+                  <img
+                    src={`https://flagcdn.com/32x24/${props.data[item].code
+                      .substring(0, 2)
+                      .toLowerCase()}.png`}
+                    alt={props.data[item].code}
+                  />{" "}
+                  <span className={classes.code}>{props.data[item].code}</span>
+                  <span className={classes.hyphen}> - </span>
+                  {props.data[item].name}
+                </button>
+              ))}
             </div>
           </div>
         ) : (
@@ -105,10 +87,7 @@ const AddCurrency = (props) => {
                 Add Currency
               </button>
             ) : (
-              <button
-                className={classes.addBtn}
-                onClick={() => setAddClick(!addClick)}
-              >
+              <button className={classes.addBtn} onClick={handleClick}>
                 <span className={classes.addCircle}>
                   <span className={classes.addIcon}>+</span>
                 </span>

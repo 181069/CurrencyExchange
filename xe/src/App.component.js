@@ -1,5 +1,5 @@
-import classes from './App.module.css';
-import Home from './home/home.component';
+import classes from "./App.module.css";
+import Home from "./pages/home/home.component";
 
 function App() {
   return (
