@@ -1,0 +1,14 @@
+.SearchCurrency {
+  width: 20px;
+}
+
+.CurrencyOption {
+    width: 2em;
+    
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    color: rgb(20, 30, 55);
+}
