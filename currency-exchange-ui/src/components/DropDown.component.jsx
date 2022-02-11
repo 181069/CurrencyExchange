@@ -16,7 +16,7 @@ const DropDown = (props) => {
       </a>
       <ul>
         {props.items.map((item, index) => (
-          <li className={styles.dropDownItem}>
+          <li className={styles.dropDownItem} key={index}>
             <a>
               <span>{item.title}</span>
               <br />
