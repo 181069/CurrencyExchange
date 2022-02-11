@@ -1,0 +1,33 @@
+.TabBox {
+  width: 60%;
+  margin: 0 auto 0 auto;
+}
+
+.TabRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Tab {
+  flex: 1 1 0px;
+  display: inline-flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 4px;
+  background-color: rgb(240, 245, 250);
+  color: rgb(55, 80, 110);
+  font-size: 1.4rem;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: center;
+  
+  cursor: pointer;
+}
+
+.Tab:hover {
+    opacity: .5;
+}
