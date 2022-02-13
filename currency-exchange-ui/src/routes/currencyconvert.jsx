@@ -1,12 +1,15 @@
-import React from "react";
-import SearchCurrency from "../components/SearchCurrency.component";
-import SelectSearch from "react-select-search";
+import React, { useState } from "react";
+// import SearchCurrency from "../components/SearchCurrency.component";
+import SelectSearch, { fuzzySearch } from "react-select-search";
 import styles from "./CurrencyConvert.module.css";
+import "./selectSearch.css";
 /**
  *
  * @param {Object} props
  */
 const CurrencyConvert = (props) => {
+  const [ConversionResult, setConversionResult] = useState(0);
+
   const listOfCurrencies = [
     { name: "USD", value: "USD" },
     { name: "Chinese yuan", value: "Chinese yuan" },
@@ -51,19 +54,48 @@ const CurrencyConvert = (props) => {
     { name: "", value: "" },
   ];
 
+  /**
+   *
+   * @param {Event} e
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams();
+    // console.log(e.target);
+    params.set("from", e.target[1].value);
+    params.set("to", e.target[3].value);
+    fetch(`http://localhost:3001/dev/convert?${params.toString()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setConversionResult(data);
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <div className={styles["CurrencyConvert"]}>
       convert
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Amount
           <input type="number" />
         </label>
-        <label>
+        <label className={styles.currencyChooser}>
           From
-          <SelectSearch options={listOfCurrencies} value="sv" name="currency" placeholder="Choose currency" autoComplete="true" search={true}/>
+          <SelectSearch
+            // className={`${styles["select-search--multiple"]} ${styles["select-search"]}`}
+            className="select-search select-search--multiple"
+            options={listOfCurrencies}
+            value="sv"
+            search
+            filterOptions={fuzzySearch}
+            name="currency"
+            placeholder="Choose currency"
+            autoComplete="true"
+          />
         </label>
-        <button className={styles.SwapButton}>
+        <button type="submit" className={styles.SwapButton}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -80,18 +112,24 @@ const CurrencyConvert = (props) => {
           </svg>
         </button>
 
-        <label>
+        <label className={styles.currencyChooser}>
           To
-          <select>
-            <option value="USD">USD</option>
-            <option value="ILS">ILS</option>
-            <option value="JOD" selected>
-              JOD
-            </option>
-            <option value="EUR">EUR</option>
-          </select>
+          <SelectSearch
+            // className={`${styles["select-search--multiple"]} ${styles["select-search"]}`}
+            className="select-search select-search--multiple"
+            options={listOfCurrencies}
+            value="sv"
+            search
+            filterOptions={fuzzySearch}
+            name="currency"
+            placeholder="Choose currency"
+            autoComplete="true"
+          />
         </label>
       </form>
+      <div>
+        {`1 ${ConversionResult.from} = ${ConversionResult.amount} ${ConversionResult.to}s.`}
+      </div>
     </div>
   );
 };
