@@ -15,7 +15,6 @@ form {
   justify-content: space-around;
   align-items: center;
   height: 10em;
-
 }
 
 @media (min-width: 768px) {
@@ -66,15 +65,19 @@ ul {
   /* margin: 50% 0 0 0; */
 }
 
-.CurrencyConvert {
-  height: 15em;
+/* .CurrencyConvert {
+  height: fit-content;
 
   border-radius: 20px;
   background-color: aliceblue;
 
   margin: 2em;
-}
+  padding: 1em;
+} */
 
 .result {
-  position: absolute;
+  display: block;
+}
+
+.search-box-wrapper {
 }
