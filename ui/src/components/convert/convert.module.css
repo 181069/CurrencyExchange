@@ -81,6 +81,9 @@ label{
     color: rgb(0, 113, 235);
     margin-top: 20px;
 }
+.swapButton:hover{
+    opacity: 60%;
+}
 .flag{
     width: 35px;
     border-radius: 3px;

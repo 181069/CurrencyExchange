@@ -2,50 +2,93 @@ import React, { useState } from "react";
 import classes from "./send.module.css";
 import { BsCheckCircle, BsBank2 } from "react-icons/bs";
 import { FaCcVisa, FaCcMastercard } from "react-icons/fa";
+import { FiCheckCircle } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
 
 export const Send = (props) => {
   const { currencies } = props;
   const [paymentInfo, setpaymentInfo] = useState({
     sender: "",
-    reciever: "",
-    amount: " ",
-    currency: "",
+    receiver: "",
+    amount: 1,
+    currency: currencies[0].name,
     paymentMethod: "Visa Card",
   });
   const [senderAlertMessage, setSenderAlertMessage] = useState("");
   const [receiverAlertMessage, setReceiverAlertMessage] = useState("");
   const [amountAlertMessage, setAmountAlertMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
+    setReceiverAlertMessage("");
+    setSenderAlertMessage("");
+    setAmountAlertMessage("");
     const name = e.target.name;
     const value = e.target.value;
-    setpaymentInfo({ ...paymentInfo, [name]: value });
+    setpaymentInfo({ ...paymentInfo, [name]: value.trim() });
   };
-  const handleSend = () => {
-    const senderValid = false, receiverValid = false,amountValid = false;
+  
+  const handleBack= () => {
+    setIsSuccess(false);
+  }
 
-    if (paymentInfo.reciever.length <= 3) {
+  const handleSend = async () => {
+    let senderValid = false,
+      receiverValid = false,
+      amountValid = false;
+
+    if (paymentInfo.receiver.length < 3) {
       setReceiverAlertMessage("receiver name should be at least 3 characters");
     } else {
       receiverValid = true;
     }
-    if (paymentInfo.reciever.length <= 3) {
+    if (paymentInfo.sender.length < 3) {
       setSenderAlertMessage("sender name should be at least 3 characters");
     } else {
       senderValid = true;
     }
-    if (paymentInfo.amount < 50) {
+    if (!paymentInfo.amount || paymentInfo.amount < 50) {
       setAmountAlertMessage("amount should be at least 50");
     } else {
       amountValid = true;
     }
-    if(receiverValid && senderValid && amountValid){
-
+    if (receiverValid && senderValid && amountValid) {
+      await fetch("http://localhost:3004/forms/send", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentInfo),
+      })
+        .then(async (res) => {
+          await res.json();
+          setIsSuccess(true);
+          setpaymentInfo({
+            sender: "",
+            receiver: "",
+            amount: 1,
+            currency: currencies[0].name,
+            paymentMethod: "Visa Card",
+          });
+        })
+        .catch((err) => {
+          setIsSuccess(false);
+          console.error(err);
+        });
     }
   };
   return (
     <div className={classes.sendContainer}>
-      <div className={classes.formContainer}>
+    {isSuccess && <div className={classes.successMessageContainer}>
+      <FiCheckCircle size={70} className={classes.successIcon}/>
+      <span onClick={handleBack} className={classes.successMessage}>Transaction Successful!</span>
+      <div onClick={handleBack} className={classes.backContainer}>
+      <BiArrowBack size={20} className={classes.backIcon} />
+      <span className={classes.back}>Go back</span>
+    </div>
+    </div>}
+      {!isSuccess && <div className={classes.formContainer}>
         <div className={classes.inputs}>
           <div className={classes.senderAndReceiver}>
             <div className={classes.inputContainer}>
@@ -75,6 +118,7 @@ export const Send = (props) => {
               onChange={handleChange}
               name="amount"
               type="number"
+              value={paymentInfo.amount}
               min={1}
             ></input>
             {amountAlertMessage && (
@@ -116,7 +160,7 @@ export const Send = (props) => {
         <button onClick={handleSend} className={classes.sendButton}>
           Send
         </button>
-      </div>
+      </div>}
       <div className={classes.aboutContainer}>
         <h3>The fast & trusted way to send money</h3>
         <span>

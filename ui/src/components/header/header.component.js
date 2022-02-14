@@ -16,16 +16,16 @@ export const Header = () => {
 
   const handleClick = (tabName) => {
     setCurrentTab(tabName);
-    if(tabName == 'convert'){
+    if(tabName === 'convert'){
       setTitle("Xe Currency Converter");
       setSpanText("Check live foreign currency exchange rates");
-    } else if(tabName == 'send'){
+    } else if(tabName === 'send'){
       setTitle("International Money Transfer");
       setSpanText("Send money globally with Xe, the world's trusted currency authority");
-    } else if(tabName == 'charts'){
+    } else if(tabName === 'charts'){
       setTitle("Xe Currency Charts");
       setSpanText("Review historical currency rates");
-    } else if(tabName == 'alerts'){
+    } else if(tabName === 'alerts'){
       setTitle("Currency Exchange Rate Alerts");
       setSpanText("Sign-in (or sign-up!) now to get free exchange rate alerts from Xe");
     }
@@ -59,7 +59,7 @@ export const Header = () => {
         });
         setCurrencies(tmpCurrencies);
       });
-  }, []);
+  }, [currencies]);
   
   return (
     <div className={classes.container}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getCurrencies, getCurrencyRates } from "../../services/currencies";
+import { getCurrencyRates } from "../../services/currencies";
 import { SwapOutlined } from "@ant-design/icons";
 import classes from "./convert.module.css";
 import { IoMdAlert } from "react-icons/io";
@@ -61,7 +61,7 @@ export const Convert = (props) => {
       // Cleanup the event listener
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
-  }, [firstClicked,secondClicked]);
+  }, [firstClicked, secondClicked]);
 
   const handleFirstClick = () => {
     setFirstClicked(true);
@@ -73,37 +73,26 @@ export const Convert = (props) => {
   };
   const handleChangeQuery = (e) => {
     const q = e.target.value.toLowerCase();
-    if(e.target.name == "first"){
-    setFirstQuery(q);
-    const tmp = [...currencies];
-    const data = tmp.filter(
-      (item) =>
-        item.name.toLowerCase().includes(q) ||
-        item.currency.toLowerCase().includes(q)
-    );
-    setFilteredFirstCurrencies(data);
-  } else if (e.target.name == "second"){
-    setSecondQuery(q);
-    const tmp = [...currencies];
-    const data = tmp.filter(
-      (item) =>
-        item.name.toLowerCase().includes(q) ||
-        item.currency.toLowerCase().includes(q)
-    );
-    setFilteredSecondCurrencies(data);
-  }
+    if (e.target.name === "first") {
+      setFirstQuery(q);
+      const tmp = [...currencies];
+      const data = tmp.filter(
+        (item) =>
+          item.name.toLowerCase().includes(q) ||
+          item.currency.toLowerCase().includes(q)
+      );
+      setFilteredFirstCurrencies(data);
+    } else if (e.target.name === "second") {
+      setSecondQuery(q);
+      const tmp = [...currencies];
+      const data = tmp.filter(
+        (item) =>
+          item.name.toLowerCase().includes(q) ||
+          item.currency.toLowerCase().includes(q)
+      );
+      setFilteredSecondCurrencies(data);
+    }
   };
-  // const handleChangeSecondQuery = (e) => {
-  //   const q = e.target.value.toLowerCase();
-  //   setSecondQuery(q);
-  //   const tmp = [...currencies];
-  //   const data = tmp.filter(
-  //     (item) =>
-  //       item.name.toLowerCase().includes(q) ||
-  //       item.currency.toLowerCase().includes(q)
-  //   );
-  //   setFilteredSecondCurrencies(data);
-  // };
   const handleChooseFirst = (element) => {
     setFirstCurr(element);
     setFirstClicked(false);
@@ -170,7 +159,7 @@ export const Convert = (props) => {
           {!firstClicked && (
             <div onClick={handleFirstClick} className={classes.droplistDefault}>
               {firstCurr.flag && (
-                <img src={firstCurr.flag} className={classes.flag}></img>
+                <img alt="flag" src={firstCurr.flag} className={classes.flag}></img>
               )}
               {firstCurr.currency && (
                 <span>
@@ -185,8 +174,8 @@ export const Convert = (props) => {
                   <ul className={classes.droplist}>
                     {filteredFirstCurrencies.map((item, index) => {
                       if (
-                        item.currency != firstCurr.currency &&
-                        item.currency != secondCurr.currency
+                        item.currency !== firstCurr.currency &&
+                        item.currency !== secondCurr.currency
                       ) {
                         return (
                           <li key={index}>
@@ -199,6 +188,7 @@ export const Convert = (props) => {
                               <img
                                 src={item.flag}
                                 className={classes.flag}
+                                alt="flag"
                               ></img>
                               <span>
                                 {`${item.currency}`} - {`${item.name}`}
@@ -206,7 +196,7 @@ export const Convert = (props) => {
                             </div>
                           </li>
                         );
-                      } else return <li style={{ width: 0, height: 0 }}></li>;
+                      } else return <li key={index} style={{ width: 0, height: 0 }}></li>;
                     })}
                   </ul>
                 </div>
@@ -244,7 +234,7 @@ export const Convert = (props) => {
               className={classes.droplistDefault}
             >
               {secondCurr.flag && (
-                <img src={secondCurr.flag} className={classes.flag}></img>
+                <img alt="flag" src={secondCurr.flag} className={classes.flag}></img>
               )}
               {secondCurr.currency && (
                 <span>
@@ -259,8 +249,8 @@ export const Convert = (props) => {
                   <ul className={classes.droplist}>
                     {filteredSecondCurrencies.map((item, index) => {
                       if (
-                        item.currency != firstCurr.currency &&
-                        item.currency != secondCurr.currency
+                        item.currency !== firstCurr.currency &&
+                        item.currency !== secondCurr.currency
                       ) {
                         return (
                           <li key={index}>
@@ -271,6 +261,7 @@ export const Convert = (props) => {
                               className={classes.droplistItem}
                             >
                               <img
+                                alt="flag"
                                 src={item.flag}
                                 className={classes.flag}
                               ></img>
@@ -280,7 +271,7 @@ export const Convert = (props) => {
                             </div>
                           </li>
                         );
-                      } else return <li style={{ width: 0, height: 0 }}></li>;
+                      } else return <li key={index} style={{ width: 0, height: 0 }}></li>;
                     })}
                   </ul>
                 </div>

@@ -1,3 +1,6 @@
+*{
+    transition: all 0.3s;
+}
 .sendContainer {
     display: flex;
     padding: 50px;
@@ -107,6 +110,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 50px;
+    margin-left: 50px;
 }
 .inputContainer{
     display: flex;
@@ -129,7 +133,6 @@
     cursor: pointer;
     font-size: 16px;
     outline: rgb(0, 113, 235);
-    font-weight: 700;
     box-shadow: 0px 0px 25px 3px rgba(240, 239, 239, 0.53);
 }
 .option{
@@ -139,15 +142,46 @@
     border-radius: 8px;
     border: none;
     padding: 15px 16px;
-    margin: 10px 10px;
+    margin: 10px 50px;
     font-size: 1.0rem;
     background: rgb(0, 113, 235);
     color: white;
     font-weight: 600;
     cursor: pointer;
 }
+.sendButton:hover{
+    opacity: 60%;
+}
 .alertText{
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
+}
+.successMessageContainer{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.successIcon{
+    color: rgb(0, 113, 235);
+}
+.successMessage{
+    font-weight: 700;
+    margin: 30px;
+    font-size: 20px;
+    color: rgb(54, 54, 54);
+}
+.backIcon, .back{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.backIcon:hover, .back:hover{
+    opacity: 60%;
+}
+.backContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
