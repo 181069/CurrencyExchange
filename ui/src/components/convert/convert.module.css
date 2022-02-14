@@ -1,0 +1,142 @@
+*{
+    list-style-type: none;
+}
+.convertContainer{
+    color: black;
+    height: 100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.inputs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    flex-wrap: wrap;
+}
+.icon{
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 5px;
+    color: rgb(70, 70, 70);
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+}
+.actionsContainer{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tooltip{
+    display: flex;
+    align-items: center;
+}
+input, .droplistDefault{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 290px;
+    height: 50px;
+    margin: 10px 0 10px 0;
+    border-radius: 5px;
+    border: 1px solid rgb(214, 213, 213);
+    padding: 8px 12px;
+    cursor: pointer;
+    outline: rgb(0, 113, 235);
+    box-shadow: 0px 0px 25px 3px rgba(240, 239, 239, 0.53);
+}
+label{
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.convertButton{
+    border-radius: 8px;
+    border: none;
+    padding: 15px 16px;
+    margin: 10px 10px;
+    font-size: 1.0rem;
+    background: rgb(0, 113, 235);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+.convertButton:hover{
+    opacity: 50%;
+}
+.swapButton{
+    width: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 1px solid rgb(214, 213, 213);
+    box-shadow: 0px 0px 25px 3px rgba(240, 239, 239, 0.53);
+    padding: 13px 10px 13px 10px;
+    background: white;
+    color: rgb(0, 113, 235);
+    margin-top: 20px;
+}
+.flag{
+    width: 35px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.droplist{
+    position: absolute;
+    font-size: 14px;
+    margin-top: -9px;
+    max-height: 300px;
+    height: fit-content;
+    overflow-y: scroll;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 25px 3px rgba(240, 239, 239, 0.53);
+}
+.droplist .flag{
+    width: 25px;
+}
+.droplistItem{
+    cursor: pointer;
+    align-items: center;
+    width: 273px;
+    display: flex;
+    padding: 16px 12px;
+    word-wrap: break-word;
+    
+}
+.droplistItem:hover{
+    background: whitesmoke;
+}
+.droplistContainer{
+    position: relative;
+}
+.resultContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-top: 30px;
+    font-size: 30px;
+    color: rgb(10, 20, 110);
+}
+.resultText{
+    font-size: 18px;
+    color: rgb(83, 83, 83);
+}
+.amountLabel{
+    position: relative;
+}
+.symbol{
+    position: absolute;
+    right: 40px;
+    top: 45.9px;
+    font-weight: 500;
+}
+.amountInput{
+    padding-left: 30px;
+    font-size: 16px;
+}
