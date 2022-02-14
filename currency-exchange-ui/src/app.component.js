@@ -1,8 +1,15 @@
-import './App.css';
+import './app.module.css';
 
-function App() {
+import Home from './pages/home/home.component';
+import React, { Component } from "react";
+
+function App()  {
   return (
-    <div></div>
+    <div>   
+      <Home />
+     
+
+    </div>
   );
 }
 
