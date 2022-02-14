@@ -37,3 +37,19 @@
     transform: rotate(360deg);
   }
 }
+
+.main-heading {
+  color: white;
+  line-height: 1em;
+  padding: 1em;
+}
+
+.tabBox-wrapper {
+  height: fit-content;
+
+  border-radius: 20px;
+  background-color: aliceblue;
+
+  margin: 2em;
+  padding: 1em;
+}
