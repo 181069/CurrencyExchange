@@ -1,0 +1,11 @@
+.SwapButton {
+    border-radius: 100%;
+    border: gray 1px solid;
+    background-color: white;
+    height: 4em;
+    width: 4em;
+    margin: auto 0 auto 0;
+    cursor: pointer;
+    padding: 1em;
+    /* use this to padding to make the svg small and centered */
+  }
