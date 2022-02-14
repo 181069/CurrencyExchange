@@ -60,3 +60,7 @@ width: 30%;
 .img2 {
     width: 90%;
 }
+.alertMessage{
+    color: red;
+    font-size: 13px;
+}

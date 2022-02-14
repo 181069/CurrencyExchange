@@ -1,8 +1,9 @@
 
 const express = require("express");
-const RecordService = require("../services/record");
+const RecordService = require("../services/recordService");
 const recordRoute = express.Router();
 const recordService = new RecordService();
+
 recordRoute.get("/getAllRecords",async (req,res)=>{
     res.send(await recordService.getAllRecords().then((res)=>res));
 })

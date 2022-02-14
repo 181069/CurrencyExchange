@@ -6,14 +6,13 @@ class Alert{
     async addAlert(alert){
      const sqlQuery = `INSERT INTO alert (ID,TEXT) VALUES (NULL,'${alert.text}')`;
    return await connection.query(sqlQuery).then(([rows, fields]) => {
-       return 'successfully added a new record';
+       return 'successfully added a new alert';
      }).catch((err) => err);
     }
     getAlert(){
      return{
          text:this.#text,
      };
-
     }
   async getAllAlerts(){
    let result=[];
