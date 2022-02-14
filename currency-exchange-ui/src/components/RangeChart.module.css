@@ -1,0 +1,9 @@
+.chart {
+    width: 100px;
+}
+
+.RangeChart {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+}
