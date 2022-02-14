@@ -7,6 +7,8 @@ import {BsBell } from "react-icons/bs";
 import 'font-awesome/css/font-awesome.min.css';
 import { Send } from "../send/send.component";
 import { getCurrencies} from "../../services/currencies";
+import Alerts from "../alerts/alert.component";
+import { Charts } from "../charts/chart.component";
 
 export const Header = () => {
   const [currencies, setCurrencies] = useState([]);
@@ -114,8 +116,8 @@ export const Header = () => {
         </div>
         {currentTab === "convert"&&<Convert currencies={currencies}/>}
         {currentTab === "send" && <Send currencies={currencies}/>}
-        {currentTab === "charts" && <div className={classes.box}>charts</div>}
-        {currentTab === "alerts" && <div className={classes.box}>alerts</div>}
+        {currentTab === "charts" && <Charts/>}
+        {currentTab === "alerts" && <Alerts/>}
       </div>
     </div>
   );

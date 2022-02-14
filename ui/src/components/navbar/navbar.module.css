@@ -45,6 +45,11 @@
     background: none;
     margin: 0 10px;
     font-size: 1.0rem;
+    cursor: pointer;
+}
+.signUpButton:hover{
+    opacity: 80%;
+    box-shadow: 1px 1px 3px 4px rgba(155, 154, 154, 0.53);
 }
 
 .signUpButton {
@@ -56,4 +61,5 @@
     background: rgb(0, 113, 235);
     color: white;
     font-weight: 600;
+    cursor: pointer;
 }

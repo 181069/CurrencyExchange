@@ -16,8 +16,6 @@ class FormsService {
       return "ammount should be greater than 0";
     } else if (form.currencyID <= 0) {
       return "currency should be greater than 0";
-    }else if (form.date.length <= 0) {
-      return "currency should be greater than 0";
     }else if (form.paymentID <= 0) {
       return "payment should be greater than 0";
     }

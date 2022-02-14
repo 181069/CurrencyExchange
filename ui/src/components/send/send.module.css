@@ -150,7 +150,8 @@
     cursor: pointer;
 }
 .sendButton:hover{
-    opacity: 60%;
+    opacity: 80%;
+    box-shadow: 1px 1px 6px 6px rgba(199, 199, 199, 0.53);
 }
 .alertText{
     color: red;

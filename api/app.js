@@ -2,9 +2,9 @@ let express = require("express");
 let app = express();
 let bodyParser = require("body-parser");
 var cors = require('cors')
-let formsRouter = require("./controllers/formsController");
-let currencyRouter = require("./controllers/currencyController");
-let paymentRouter = require("./controllers/paymentController");
+let formsRouter = require("../api/controllers/formsController");
+let currencyRouter = require("../api/controllers/currencyController");
+let paymentRouter = require("../api/controllers/paymentController");
 
 app.use(bodyParser.json());
 app.use(cors());

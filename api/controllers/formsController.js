@@ -11,8 +11,7 @@ exchangeRoutes.get("/getAllForms", async (req, res) => {
 exchangeRoutes.post("/send", async (req, res) => {
   const body = req.body;
   console.log(body);
-  return res.send({ result: await formObj.addForm(body).then((res) => res) });
+  res.send({ result: await formObj.addForm(body).then((res) => res) });
 });
-
 
 module.exports = exchangeRoutes;

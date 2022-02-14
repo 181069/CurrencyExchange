@@ -65,10 +65,10 @@ label{
     color: white;
     font-weight: 600;
     cursor: pointer;
-
 }
 .convertButton:hover{
-    opacity: 50%;
+    opacity: 80%;
+    box-shadow: 1px 1px 6px 6px rgba(199, 199, 199, 0.53);
 }
 .swapButton{
     width: 50px;
@@ -82,7 +82,8 @@ label{
     margin-top: 20px;
 }
 .swapButton:hover{
-    opacity: 60%;
+    opacity: 80%;
+    box-shadow: 1px 1px 6px 6px rgba(199, 199, 199, 0.53);
 }
 .flag{
     width: 35px;

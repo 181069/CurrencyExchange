@@ -1,18 +1,17 @@
-const connection = require('../connection/index');
+const connection = require('../connection/index.js');
 class Form {
     #id;
     #sender;
     #receiver;
-    #date;
-    #ammount; 
+    #amount; 
     #currencyId;
     #paymentId;
 
 
     async addForm(form) {
       console.log("momde",form);
-        const sqlQuery = `INSERT INTO form (id, sender, receiver, ammount,currencyId, date, paymentId) VALUES (NULL,'${form.sender
-          }', '${form.receiver}', '${form.ammount}', '${form.currencyId}', '${form.date}', '${form.paymentId}')`;
+        const sqlQuery = `INSERT INTO form (id, sender, receiver, amount, currencyId, paymentId) VALUES 
+        (NULL,'${form.sender}', '${form.receiver}', ${form.amount}, (SELECT id FROM currency WHERE name = '${form.currency}' LIMIT 1), (SELECT id FROM payment WHERE name = '${form.paymentMethod}'))`;
     
         return await connection.query(sqlQuery)
           .then(([rows, fields]) => {

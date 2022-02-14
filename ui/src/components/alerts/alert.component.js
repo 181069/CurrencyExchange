@@ -1,7 +1,7 @@
 import classes from './alert.module.css';
 import exchange from './exchange.png';
 import dollar from './dollar.webp';
-const Alert = () => {
+const Alerts = () => {
 
   return (
     <div className={classes.wrapper}>
@@ -33,4 +33,4 @@ const Alert = () => {
     </div>
   );
 };
-export default Alert;
+export default Alerts;
