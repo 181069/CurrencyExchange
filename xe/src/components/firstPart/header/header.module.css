@@ -5,20 +5,16 @@
   background: none;
   transition: background 0.3s ease 0s;
   border-bottom: 0px;
-  height: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 12px;
   background-color: rgb(3, 3, 90);
 }
 .img {
   height: 50px;
 }
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  max-width: 1200px;
-  padding: 12px;
-}
+
 .sign,.converter,.send,.bus,.tools,.res{
   appearance: none;
     background: none;
@@ -52,5 +48,12 @@
     background: rgb(0, 113, 235);
     border: 2px solid rgb(0, 113, 235);
     border-radius: 8px;
+
+}
+.btns {
+  margin-right: 60px;
+}
+.image {
+  margin-left: 50px;
 
 }
