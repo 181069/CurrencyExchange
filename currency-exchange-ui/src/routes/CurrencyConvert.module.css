@@ -79,5 +79,11 @@ ul {
   display: block;
 }
 
+.result > span {
+  font-size: small;
+  color: gray;
+  text-align: right;
+}
+
 .search-box-wrapper {
 }

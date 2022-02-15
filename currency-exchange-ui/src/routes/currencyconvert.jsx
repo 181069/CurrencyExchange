@@ -4,13 +4,34 @@ import React, { useState } from "react";
 import CurrencySelector from "../components/CurrencySelector.component";
 import styles from "./CurrencyConvert.module.css";
 // import "./selectSearch.css";
+
+/** @typedef {object} props
+ * @property {string} from
+ * @property {string} to
+ * @property {number} amount
+ * @property {string} retrievalTime
+ */
+
 /**
  *
- * @param {Object} props
+ * @param {props} props
  */
 const CurrencyConvert = (props) => {
   const [ConversionResult, setConversionResult] = useState(0);
+  const [formData, setFormData] = useState({
+    amount: 1,
+    from: "USD",
+    to: "USD",
+  });
 
+  /**
+   *
+   * @param {Event} e
+   */
+  const handleChange = (e) => {
+    console.log(e);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   /**
    *
@@ -21,13 +42,15 @@ const CurrencyConvert = (props) => {
 
     const params = new URLSearchParams();
     // console.log(e.target);
+
     params.set("from", e.target[1].value);
     params.set("to", e.target[3].value);
+
     fetch(`http://localhost:3001/dev/convert?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setConversionResult(data);
+        console.log("data", data);
+        setConversionResult({ ...data, formAmount: e.target[0].value });
       })
       .catch((err) => console.error(err));
   };
@@ -38,12 +61,22 @@ const CurrencyConvert = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
           Amount
-          <input type="number" value={1.0} />
+          <input
+            type="number"
+            value={FormData[0]}
+            onChange={(e) =>
+              setFormData({ ...formData, amount: e.target.value })
+            }
+          />
         </label>
         <label className={styles.currencyChooser}>
           From
           <div className={styles["search-box-wrapper"]}>
-            <CurrencySelector />
+            <CurrencySelector
+              value={formData.from}
+              name="from"
+              onChange={handleChange}
+            />
           </div>
         </label>
         <button type="submit" className={styles.SwapButton}>
@@ -66,13 +99,30 @@ const CurrencyConvert = (props) => {
         <label className={styles.currencyChooser}>
           To
           <div className={styles["search-box-wrapper"]}>
-            <CurrencySelector />
+            <CurrencySelector
+              value={formData.to}
+              name="to"
+              onChange={handleChange}
+            />
           </div>
         </label>
       </form>
-      <div>
-        {`1 ${ConversionResult.from} = ${ConversionResult.amount} ${ConversionResult.to}s.`}
-      </div>
+      {ConversionResult !== 0 && (
+        <div className={styles.result}>
+          {`${ConversionResult.formAmount} ${ConversionResult.from} = ${
+            ConversionResult.formAmount * ConversionResult.amount
+          } ${ConversionResult.to}s.`}
+          {
+            <span>
+              {" "}
+              {`${ConversionResult.from} to ${
+                ConversionResult.to
+              } conversion- Last
+          updated ${new Date(ConversionResult.retrievalTime).toUTCString()}`}
+            </span>
+          }
+        </div>
+      )}
     </div>
   );
 };
