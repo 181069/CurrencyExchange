@@ -4,6 +4,8 @@ import "./CurrencySelector.css";
 /**
  *
  * @param {Object} props
+ * @param {string} props.value
+ * @param {Function} props.onChange
  */
 const CurrencySelector = (props) => {
   const listOfCurrencies = [
@@ -55,10 +57,18 @@ const CurrencySelector = (props) => {
       // className={`${styles["select-search--multiple"]} ${styles["select-search"]}`}
       className="select-search select-search--multiple"
       options={listOfCurrencies}
-      value="sv"
+
+
+      // value={props.value}
+      // name={props.name}
+      {...props}
+
       search
+      onChange={(e) => {
+        props.onChange({ target: { name: props.name, value: e } });
+      }}
+      // onChange={props.onChange}
       filterOptions={fuzzySearch}
-      name="currency"
       placeholder="Choose currency"
       autoComplete="true"
     />
