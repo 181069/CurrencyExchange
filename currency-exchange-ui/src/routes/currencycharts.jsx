@@ -8,6 +8,15 @@ import styles from "./CurrencyCharts.module.css";
  */
 const CurrencyCharts = (props) => {
   const [Data, setData] = useState(null);
+  const [formData, setFormData] = useState({ from: "USD", to: "USD" });
+  /**
+   *
+   * @param {Event} e
+   */
+  const handleChange = (e) => {
+    console.log(e);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +42,11 @@ const CurrencyCharts = (props) => {
         <label className={styles.currencyChooser}>
           From
           <div className={styles["search-box-wrapper"]}>
-            <CurrencySelector />
+            <CurrencySelector
+              value={formData.from}
+              onChange={handleChange}
+              name="from"
+            />
           </div>
         </label>
         <button type="submit" className={styles.SwapButton}>
@@ -56,7 +69,11 @@ const CurrencyCharts = (props) => {
         <label className={styles.currencyChooser}>
           To
           <div className={styles["search-box-wrapper"]}>
-            <CurrencySelector />
+            <CurrencySelector
+              value={formData.to}
+              onChange={handleChange}
+              name="to"
+            />
           </div>
         </label>
       </form>
