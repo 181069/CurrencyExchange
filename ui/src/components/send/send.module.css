@@ -118,8 +118,7 @@
     align-items: flex-start;
 }
 .senderAndReceiver{
-    display: flex;
-    justify-content: space-between;
+   
     flex-wrap: wrap;
 }
 .select{
