@@ -63,7 +63,8 @@ const CurrencyConvert = (props) => {
           Amount
           <input
             type="number"
-            value={FormData[0]}
+            name="amount"
+            value={formData.amount}
             onChange={(e) =>
               setFormData({ ...formData, amount: e.target.value })
             }
