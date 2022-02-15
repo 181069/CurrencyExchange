@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const { random } = require("mathjs");
 // const config = require("dotenv").config();
 // const port = process.env.PORT;
 const port = 3001;
@@ -30,7 +29,8 @@ app.get("/dev/convert", (req, res) => {
   res.status(200).send({
     from: `${req.query.from}`,
     to: `${req.query.to}`,
-    amount: random(0.1, 1),
+    amount: Math.random(),
+    retrievalTime: Date.now(),
   });
 
   console.table(req.query);
