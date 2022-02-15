@@ -7,13 +7,19 @@ import { BiArrowBack } from "react-icons/bi";
 
 export const Send = (props) => {
   const { currencies } = props;
+  const [currCurrency, setCurrCurrency] = useState(
+    currencies.length? currencies.filter(
+      (item) => item.country.toLowerCase() === "united states"
+    )[0]:{}
+  );
   const [paymentInfo, setpaymentInfo] = useState({
     sender: "",
     receiver: "",
     amount: 1,
-    currency: currencies[0].name,
+    currency:currCurrency !== null ? currCurrency.name :"",
     paymentMethod: "Visa Card",
   });
+  
   const [senderAlertMessage, setSenderAlertMessage] = useState("");
   const [receiverAlertMessage, setReceiverAlertMessage] = useState("");
   const [amountAlertMessage, setAmountAlertMessage] = useState("");
@@ -135,7 +141,7 @@ export const Send = (props) => {
             >
               {currencies.map((item, index) => (
                 <option key={index}>
-                  {item.name} ({item.symbol})
+                  {item.currency} - {item.name}
                 </option>
               ))}
             </select>

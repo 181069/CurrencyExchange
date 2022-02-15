@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Send } from "../send/send.component";
 import { getCurrencies} from "../../services/currencies";
 import Alerts from "../alerts/alert.component";
-import { Charts } from "../charts/chart.component";
+import { Charts } from "../charts/charts.component";
 
 export const Header = () => {
   const [currencies, setCurrencies] = useState([]);
@@ -64,7 +64,7 @@ export const Header = () => {
   }, [currencies]);
   
   return (
-    <div className={classes.container}>
+    <div style={{"margin-bottom": currentTab === "send" || currentTab === "alerts"?"70vh":""}} className={classes.container}>
       <h1 className={classes.title}>{title}</h1>
       <h3 className={classes.spanText}>
         {spanText}

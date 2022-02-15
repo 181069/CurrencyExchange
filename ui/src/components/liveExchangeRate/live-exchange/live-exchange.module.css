@@ -1,0 +1,79 @@
+.LiveExchange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+  font-weight: bold;
+  position: relative;
+  /* margin-bottom: 120vh; */
+}
+
+.title {
+  color: rgb(10, 20, 110);
+  margin: 32px 0px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.liveTable {
+  width: 80vw;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: start;
+}
+
+.tableHeaderElem {
+  display: flex;
+  align-items: center;
+  color: rgb(20, 30, 55);
+  flex: 0 10 30%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 16px 8px;
+}
+
+.tableHeaderElem:last-child {
+  justify-content: center;
+}
+
+.mainRow {
+  background-color: #0a146e;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  color: white;
+}
+
+.mainRowAmount {
+  margin-left: 10vw;
+  position: relative;
+}
+
+.mainRowAmount::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  border: 9px solid;
+  border-color: #0a146e transparent transparent transparent;
+}
+
+.currencyDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px;
+}
+
+.counterDiv {
+  display: flex;
+  align-items: flex-start;
+}
+
+.counterP {
+  margin: 0 0 0 5px;
+  font-weight: normal;
+}

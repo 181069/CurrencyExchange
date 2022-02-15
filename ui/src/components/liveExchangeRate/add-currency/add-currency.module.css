@@ -1,0 +1,104 @@
+.addBtn {
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #006fe8;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled,
+button:disabled:hover {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+}
+
+.addCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: #006fe8;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+}
+
+.addIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+}
+
+.wrapper {
+  width: 300px;
+}
+
+.content {
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #006fe8;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 8px;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.options {
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.options button {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.options button:hover {
+  background-color: #f3f3f3;
+}
+
+.optionBtn {
+  border: none;
+  width: 100%;
+  margin-top: 5px;
+  background-color: transparent;
+}
+
+.code {
+  padding-left: 5px;
+}
+
+.hyphen {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}

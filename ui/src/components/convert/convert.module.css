@@ -93,7 +93,6 @@ label{
 .droplist{
     position: absolute;
     font-size: 14px;
-    margin-top: -9px;
     max-height: 300px;
     height: fit-content;
     overflow-y: scroll;
@@ -137,7 +136,7 @@ label{
 .symbol{
     position: absolute;
     right: 40px;
-    top: 45.9px;
+    top: 39.2px;
     font-weight: 500;
 }
 .amountInput{

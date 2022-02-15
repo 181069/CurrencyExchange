@@ -8,8 +8,7 @@
 
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between ;
     position: fixed;
     width: 100%;
     top: 0px;
@@ -32,6 +31,9 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom:0 ;
+    font-size: 17px;
 }
 
 .navItem {

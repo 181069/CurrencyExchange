@@ -186,3 +186,45 @@
     align-items: center;
     justify-content: center;
 }
+.successIcon{
+    color: rgb(0, 113, 235);
+}
+.successMessage{
+    font-weight: 700;
+    margin: 30px;
+    font-size: 20px;
+    color: rgb(54, 54, 54);
+}
+.backIcon, .back{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.backIcon:hover, .back:hover{
+    opacity: 60%;
+}
+.backContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.successIcon{
+    color: rgb(0, 113, 235);
+}
+.successMessage{
+    font-weight: 700;
+    margin: 30px;
+    font-size: 20px;
+    color: rgb(54, 54, 54);
+}
+.backIcon, .back{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.backIcon:hover, .back:hover{
+    opacity: 60%;
+}
+.backContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
